@@ -1,0 +1,39 @@
+module basic_gates_tb;
+  reg a,b,c,d,e;
+  wire x,y,z;
+  
+//port are mapped based on the order ,and order should be match with the prt list in the design module
+  basic_gates uut(a,b,c,d,e,x,y,z); 
+  
+  initial begin
+    $display("AND Gate");
+    $display("A | B | X");
+    a=0;b=0; #1 $display("%b | %b | %b",a,b,x);
+    a=0;b=1; #1 $display("%b | %b | %b",a,b,x);
+    a=1;b=0; #1 $display("%b | %b | %b",a,b,x);
+    a=1;b=1; #1 $display("%b | %b | %b",a,b,x);
+    
+  end
+  
+  initial begin
+    #20;// Wait for previous tests to complete because initial blocks are executed concurrently
+    $display("OR Gate");
+    $display("C | D | Y");
+    c=0;d=0; #1 $display("%b | %b | %b",c,d,y);
+    c=0;d=1; #1 $display("%b | %b | %b",c,d,y);
+    c=1;d=0; #1 $display("%b | %b | %b",c,d,y);
+    c=1;d=1; #1 $display("%b | %b | %b",c,d,y);
+    
+  end
+  
+    initial begin
+      #40;
+      $display("NOT Gate");
+      $display("E | Z");
+      e=0; #1 $display("%b | %b",e,z);
+      e=1; #1 $display("%b | %b",e,z);
+    
+  end
+  
+  
+endmodule
