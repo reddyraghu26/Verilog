@@ -1,2 +1,2 @@
 # Verilog
-Degital Design Using Verilog
+Digital Design Using Verilog
