@@ -1,0 +1,30 @@
+module Universal_gates_tb;
+  reg a,b;
+  wire x,y;
+  
+//port are mapped based on the order ,and order should be match with the prt list in the design module
+  Universal_gates uut(a,b,x,y); 
+  
+  initial begin
+    $display("NAND Gate");
+    $display("A | B | X");
+    a=0;b=0; #1 $display("%b | %b | %b",a,b,x);
+    a=0;b=1; #1 $display("%b | %b | %b",a,b,x);
+    a=1;b=0; #1 $display("%b | %b | %b",a,b,x);
+    a=1;b=1; #1 $display("%b | %b | %b",a,b,x);
+    
+  end
+  
+  initial begin
+    #20;
+    // Wait for previous tests to complete because initial blocks are executed concurrently
+    
+    $display("NOR Gate");
+    $display("A | B | Y");
+    a=0;b=0; #1 $display("%b | %b | %b",a,b,y);
+    a=0;b=1; #1 $display("%b | %b | %b",a,b,y);
+    a=1;b=0; #1 $display("%b | %b | %b",a,b,y);
+    a=1;b=1; #1 $display("%b | %b | %b",a,b,y);
+    
+  end
+endmodule
