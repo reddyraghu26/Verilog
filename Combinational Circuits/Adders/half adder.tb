@@ -1,0 +1,25 @@
+module tb;
+  reg A,B;
+  wire sum,cout;
+  
+  half_adder_behavioral uut (.A(A),
+                             .B(B),
+                             .sum(sum),
+                             .cout(cout)
+                            );
+  
+  initial begin 
+    $display("A|B|SUm|Cout");
+    $monitor("%b|%b| %b |%b",A,B,sum,cout);
+    
+    for(integer i=0;i<4;i=i+1) begin
+      {A,B}=i;
+      #1;
+    end
+    #1;
+    $finish;
+  end
+endmodule
+      
+  
+  
