@@ -1,0 +1,27 @@
+module tb;
+  reg A,B,Cin;
+  wire sum,cout;
+  
+  full_adder_behavioral uut (.A(A),
+                             .B(B),
+                             .Cin(Cin),
+                             .sum(sum),
+                             .cout(cout)
+                            );
+  
+  
+  initial begin 
+    $display("A|B|Cin|Sum|Cout");
+    $monitor("%b|%b| %b | %b |%b",A,B,Cin,sum,cout);
+    
+    for(integer i=0;i<8;i=i+1) begin
+      {A,B,Cin}=i;
+      #1;
+    end
+    #1;
+    $finish;
+  end
+endmodule
+      
+  
+  
