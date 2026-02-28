@@ -1,0 +1,27 @@
+module tb;
+  reg I0,I1,S;
+  wire Y;
+  
+  MUX_2X1_B uut (.I0(I0),
+                 .I1(I1),
+                 .S(S),
+                 .Y(Y)
+                );
+  
+  initial begin
+    $display("S|I0|I1|Y");
+    $monitor("%b|%b |%b |%b",S,I0,I1,Y);
+    
+    for(integer i=0;i<2;i=i+1) begin
+      for(integer j=0;j<4;j=j+1) begin
+        S=i;
+        {I0,I1}=j;
+        #1;
+      end
+    end
+    #1;
+    $finish;
+    end
+endmodule
+  
+  
