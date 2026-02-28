@@ -1,0 +1,28 @@
+module tb;
+  reg [3:0]a,b;
+  reg cin;
+  wire [3:0]sum;
+  wire carry;
+  
+  adder_4bit uut (a,b,cin,sum,carry);
+  
+  initial begin
+    $display("a | b | cin | sum| carry");
+    $monitor("%b | %b | %b | %b  | %b",a,b,cin,sum,carry);
+    
+    for(integer k=0;k<2;k=k+1) begin
+      for(integer i=0;i<16;i=i+1)begin
+        for(integer j=0;j<16;j=j+1)begin
+          a=i; //automatically takes the lowest 4 bits
+          b=j;
+          cin=k;
+         #1;
+        end
+      end
+    end
+    #1;
+    $finish;
+  end
+endmodule
+    
+    
