@@ -1,0 +1,28 @@
+module tb;
+  reg [7:0]I;
+  reg s0,s1,s2;
+  wire Y;
+  
+  MUX_8X1 uut (.I(I),
+               .s0(s0),
+               .s1(s1),
+               .s2(s2),
+               .Y(Y)
+                );
+  
+  initial begin
+    I=8'b10110101;
+    
+    $display("S2|S1|S0|    I   |Y");
+    $monitor("%b |%b |%b |%b|%b",s2,s1,s0,I,Y);
+    
+    for(integer i=0;i<8;i=i+1) begin
+      {s2,s1,s0}=i;
+        #1;
+    end
+    #1;
+    $finish;
+    end
+endmodule
+  
+  
