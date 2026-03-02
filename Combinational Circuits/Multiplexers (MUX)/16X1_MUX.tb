@@ -1,0 +1,26 @@
+module tb;
+  reg [15:0] I;
+  reg [3:0] S;
+  wire Y;
+  
+  MUX_16X1 uut(I,S,Y);
+  
+  initial begin 
+    
+    I= 16'H1432;
+
+    $display("S   |        I         |Y");
+    $monitor("%b| %b |%b",S,I,Y);
+             
+             for(integer i=0;i<16;i=i+1) begin
+               S=i;
+               #1;
+             end
+     end
+     initial begin
+       #20;
+       $finish;
+     end
+  endmodule
+  
+  
