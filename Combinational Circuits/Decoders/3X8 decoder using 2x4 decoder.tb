@@ -1,0 +1,16 @@
+module tb;
+  reg I0,I1,E;
+  wire [7:0] Y;
+  
+  Decoder_3X8 uut(I0,I1,E,Y);
+  
+  initial begin
+    $display("E|I1|I0|Y");
+    $monitor("%b|%b |%b |%b",E,I1,I0,Y);
+    for(integer i=0;i<8;i=i+1) begin
+      {E,I1,I0}=i;
+      #1;
+    end
+  end
+endmodule
+  
