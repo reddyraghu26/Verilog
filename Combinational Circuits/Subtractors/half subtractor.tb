@@ -1,0 +1,18 @@
+
+module tb;
+  reg A,B;
+  wire Diff,Bow;
+  
+  half_subtractor uut (A,B,Diff,Bow);
+  
+  initial begin
+    $display("A|B|Dif|Bow");
+    $monitor("%b|%b|%b |%b",A,B,Diff,Bow);
+    for(integer i=0;i<4;i=i+1) begin
+      {A,B}=i;
+      #1;
+    end
+    $finish;
+  end
+endmodule
+    
