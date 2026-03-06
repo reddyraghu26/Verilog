@@ -1,0 +1,31 @@
+module tb;
+  parameter width=2;
+  reg [width-1:0] A,B;
+  wire eql,gret,less;
+  
+  comparator #(.width(width)) uut(.A(A),
+                                .B(B),
+                                .eql(eql),
+                                .gret(gret),
+                                .less(less)
+                               );
+  
+  initial begin
+    $dumpfile("wave.vcd");
+    $dumpvars(0,tb);
+    
+    $display("A  |  B |A=B|A>B|A<B");
+    $monitor("%b | %b | %b | %b |%b",A,B,eql,gret,less);
+    
+    // (1<<width) Left shift 1 by 'width' bits → equals 2^width
+    
+    for(integer i=0;i<(1<<width);i=i+1) begin
+      for(integer j=0;j<(1<<width);j=j+1) begin
+        A=i;
+        B=j;
+        #1;
+      end
+    end
+    $finish;
+  end
+endmodule
