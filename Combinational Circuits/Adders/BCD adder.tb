@@ -1,0 +1,24 @@
+module tb;
+  reg [3:0] A,B;
+  reg cin;
+  wire [3:0] sum;
+  wire carry;
+  
+  BCD_adder uut(A,B,cin,sum,carry);
+  
+  initial begin
+    $display("A |B |Cin|Sum|Carry");
+    $monitor("%d|%d| %b |%d |%b",A,B,cin,sum,carry);
+    
+    cin=1'b0;
+    for(integer i=0;i<10;i=i+1) begin
+      for(integer j=0;j<10;j=j+1) begin
+        A=i;
+        B=j;
+        #1;
+      end
+    end
+    #1;
+    $finish;
+  end
+endmodule
