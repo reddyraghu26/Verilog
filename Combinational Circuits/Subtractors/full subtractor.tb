@@ -1,16 +1,19 @@
 module tb;
+  
   reg A,B,Bin;
   wire Diff,Bow;
   
   full_subtractor uut (A,B,Bin,Diff,Bow);
   
   initial begin
-    $display("A B Bin|Dif|Bow");
-    $monitor(" %b %b %b |%b |%b",A,B,Bin,Diff,Bow);
+    $display("A|B|Bin|Diff|Bow");
+    $monitor("%b|%b| %b | %b |%b",A,B,Bin,Diff,Bow);
+    
     for(integer i=0;i<8;i=i+1) begin
-      {A,B,Bin}=i;
+      {A,B,Bin} =i;
       #1;
     end
+    #1;
     $finish;
   end
 endmodule

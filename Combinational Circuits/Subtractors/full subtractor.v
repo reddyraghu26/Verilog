@@ -6,8 +6,8 @@ module full_subtractor(
   output Diff,Bow
 );
   
-  assign Diff=A ^ B ^ Bin;
-  assign Bow=(~A) & B | ((A^B)&Bin);
+  assign Diff   =  A ^ B ^ Bin;
+  assign Bow   = (~A & B) | (~A & Bin) | (B & Bin);
   
 endmodule
 
