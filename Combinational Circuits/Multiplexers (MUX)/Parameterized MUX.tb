@@ -1,0 +1,30 @@
+module mux_tb;
+
+parameter WIDTH = 4;
+parameter N = 4;
+
+reg [WIDTH-1:0] in [N-1:0];
+reg [$clog2(N)-1:0] sel;
+wire [WIDTH-1:0] y;
+
+parameterized__MUX #(WIDTH,N) uut(
+  .in(in),
+  .sel(sel),
+  .y(y)
+);
+  initial begin
+    $display("sel | y");  
+    for(integer i=0;i<N;i=i+1) begin
+      in[i]=i;
+    end
+    for(integer i=0;i<N;i=i+1) begin
+      sel=i;
+      #1;
+      $display("%d | %b", sel, y);
+    end
+    #10;
+    $finish;
+    
+  end
+
+endmodule
