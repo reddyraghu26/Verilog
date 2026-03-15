@@ -1,0 +1,28 @@
+module tb;
+  reg clk,S,R;
+  wire QN,QN_bar;
+  
+  SR_FF uut(clk,S,R,QN,QN_bar);
+  
+  always #5 clk = ~clk;
+  
+  initial begin
+    $dumpfile("wave.vcd");
+    $dumpvars(0,tb);
+    
+    $display("clk|S | R | QN | QN_b");
+    $monitor("%b  |%b | %b | %b  | %b ",clk,S,R,QN,QN_bar);
+
+        clk=1;
+        S=1;R=0; 
+    #10;S=0;R=0; 
+    #10;S=0;R=1; 
+    #10;S=1;R=0; 
+    #10;S=1;R=1; 
+    
+    #10; 
+    $monitoroff;
+    $finish;
+  end
+endmodule
+  
