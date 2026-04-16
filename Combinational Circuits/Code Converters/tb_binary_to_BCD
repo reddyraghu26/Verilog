@@ -1,0 +1,13 @@
+// Code your testbench here
+// or browse Examples
+module tb;
+  reg [7:0] bin;
+  wire [11:0] BCD;
+  
+  Binary_BCD uut(.bin(bin),.BCD(BCD));
+  
+  initial begin
+    $strobe("%b",BCD);
+    bin = 8'b00100011;
+  end
+endmodule
